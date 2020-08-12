@@ -4,5 +4,6 @@ public abstract class Atendente {
 
   public Atendente(String nome) {
     this.nome = nome;
+    this.ocupado = false;
   }
 }
