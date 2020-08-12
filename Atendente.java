@@ -1,8 +1,8 @@
 public abstract class Atendente {
   private String nome;
   private boolean ocupado;
-  final int tempo_vacina;
-  final int tempo_ficha;
+  final private int tempo_vacina;
+  final private int tempo_ficha;
 
   public Atendente(String nome, int tempo_ficha, int tempo_vacina) {
     this.nome = nome;
@@ -21,5 +21,10 @@ public abstract class Atendente {
 
   public int aplicaVacina() {
     return tempo_vacina;
+  }
+
+  @Override
+  public String toString() {
+    return "Nome: " + this.nome;
   }
 }
