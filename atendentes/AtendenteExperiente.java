@@ -2,7 +2,7 @@ package atendentes;
 
 public class AtendenteExperiente extends Atendente {
 
-  public AtendenteExperiente(String nome) {
-    super(nome, 2, 1);
+  public AtendenteExperiente() {
+    super(2, 1);
   }
 }

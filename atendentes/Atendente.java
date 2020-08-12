@@ -1,13 +1,12 @@
 package atendentes;
 
 public abstract class Atendente {
-  private String nome;
   private boolean ocupado;
+  private int numero_atendimentos;
   final private int tempo_vacina;
   final private int tempo_ficha;
 
-  public Atendente(String nome, int tempo_ficha, int tempo_vacina) {
-    this.nome = nome;
+  public Atendente(int tempo_ficha, int tempo_vacina) {
     this.ocupado = false;
     this.tempo_ficha = tempo_ficha;
     this.tempo_vacina = tempo_vacina;
@@ -25,8 +24,7 @@ public abstract class Atendente {
     return tempo_vacina;
   }
 
-  @Override
-  public String toString() {
-    return "Nome: " + this.nome;
+  public void adicionaAtendimento() {
+    this.numero_atendimentos++;
   }
 }
