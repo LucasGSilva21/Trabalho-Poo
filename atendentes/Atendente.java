@@ -1,3 +1,5 @@
+package atendentes;
+
 public abstract class Atendente {
   private String nome;
   private boolean ocupado;

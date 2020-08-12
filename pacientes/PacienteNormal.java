@@ -1,3 +1,5 @@
+package pacientes;
+
 import java.sql.Time;
 
 public class PacienteNormal extends Paciente {

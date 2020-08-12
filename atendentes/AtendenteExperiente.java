@@ -1,3 +1,5 @@
+package atendentes;
+
 public class AtendenteExperiente extends Atendente {
 
   public AtendenteExperiente(String nome) {
