@@ -52,9 +52,44 @@ public class Simulacao {
     return atendente;
   }
 
+  public boolean atendimentosFinalizados() {
+    boolean encerra = true;
+
+    for (Atendente atendente : atendentes) {
+      if (atendente.getOcupado()) {
+        encerra = false;
+      }
+    }
+
+    return encerra;
+  }
+
   public void iniciaSimulacao() {
+    Paciente auxPaciente;
+    Atendente auxAtendente;
 
     while (true) {
+      auxPaciente = this.getPaciente();
+      auxAtendente = this.verificaAtendenteLivre();
+
+      // verifica se tem pessoas na fila
+      if (auxPaciente != null) {
+
+        if (auxAtendente != null) {
+
+        } else {
+
+        }
+
+      } else {
+        // verifica se tem pessoas sendo atendidas
+        if (atendimentosFinalizados()) {
+          break;
+        } else {
+
+        }
+      }
+
       /*
        * if(tem pessoa na fila){ if(verifica atendente livre){ adiciona evento
        * iniciaAtendimento }else{ espera - atualiza tempo de fila e executa os
