@@ -34,6 +34,6 @@ public abstract class Atendente {
 
   @Override
   public String toString() {
-    return "Número de Atendimentos: " + numero_atendimentos;
+    return "Número de Atendimentos: " + numero_atendimentos + "\n";
   }
 }
