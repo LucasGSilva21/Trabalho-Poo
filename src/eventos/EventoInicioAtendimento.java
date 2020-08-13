@@ -26,4 +26,8 @@ public class EventoInicioAtendimento extends Evento {
   public void setTempoAtendimento(LocalTime tempo) {
     this.tempoAtendimento = tempo;
   }
+
+  public LocalTime getTempoAtendimento() {
+    return this.tempoAtendimento;
+  }
 }

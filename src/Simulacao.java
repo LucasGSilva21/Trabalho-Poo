@@ -20,20 +20,26 @@ public class Simulacao {
     ArrayList<Evento> eventos = new ArrayList<Evento>();
   }
 
-  public Paciente getPaciente() {
+  public Paciente getPaciente(LocalTime tempoAtual) {
     Paciente paciente;
 
-    if (pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty()) {
-      return null;
-    } else if (pacientesPreferenciais.isEmpty()) {
-      paciente = pacientesNormais.get(0);
-      pacientesNormais.remove(0);
-    } else {
-      paciente = pacientesPreferenciais.get(0);
-      pacientesPreferenciais.remove(0);
+    for (PacientePreferencial pacientePreferencial : pacientesPreferenciais) {
+      if (pacientePreferencial.getHorario_chegada().compareTo(tempoAtual) >= 0) {
+        paciente = pacientePreferencial;
+        pacientesPreferenciais.remove(pacientePreferencial);
+        return paciente;
+      }
     }
 
-    return paciente;
+    for (PacienteNormal pacienteNormal : pacientesNormais) {
+      if (pacienteNormal.getHorario_chegada().compareTo(tempoAtual) >= 0) {
+        paciente = pacienteNormal;
+        pacientesNormais.remove(pacienteNormal);
+        return paciente;
+      }
+    }
+
+    return null;
   }
 
   public void adicionaEvento(Evento novoEvento) {
@@ -65,7 +71,31 @@ public class Simulacao {
   }
 
   public void atendePaciente() {
+    LocalTime menorTempo = LocalTime.of(00, 00, 00);
 
+    // descobrir o menor tempo
+    for (Evento evento : eventos) {
+      // percorrer apenas os eventos iniciais
+      if (evento.getClass() == EventoInicioAtendimento.class) {
+        if (menorTempo > evento.getTempoAtendimento()) {
+          // atualiza o menor tempo
+        }
+      }
+    }
+
+    // somar tempo total
+    this.tempoTotal = this.tempoTotal + menorTempo;
+
+    // subtrair tempo de atendimento menor de todos os eventos iniciais
+    for (Evento evento : eventos) {
+      if (evento.getClass() == EventoInicioAtendimento.class) {
+        evento.setTempoAtendimento(evento.getTempoAtendimento() - menorTempo);
+        // verifica se zerou
+        if (evento.getTempoAtendimento() == 0) {
+          // adiciona um evento Fim no array
+        }
+      }
+    }
   }
 
   public void iniciaSimulacao() {
@@ -74,7 +104,7 @@ public class Simulacao {
     Evento auxEvento;
 
     while (true) {
-      auxPaciente = this.getPaciente();
+      auxPaciente = this.getPaciente(tempoTotal);
       auxAtendente = this.verificaAtendenteLivre();
 
       // verifica se tem pessoas na fila
