@@ -17,4 +17,9 @@ public abstract class Paciente {
   public void setHorarioAtendimento(LocalTime horario_atendimento) {
     this.horario_atendimento = horario_atendimento;
   }
+
+  public void setAtendido() {
+    this.atendido = true;
+  }
+
 }
