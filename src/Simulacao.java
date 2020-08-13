@@ -9,9 +9,7 @@ public class Simulacao {
   private ArrayList<Atendente> atendentes;
 
   public Simulacao() {
-    AcessaDados lerArquivo = new AcessaDados();
-
-    ArrayList<Atendente> atendentes = lerArquivo.lerAtendentes();
+    ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();
   }
 
   public void getPaciente() {
