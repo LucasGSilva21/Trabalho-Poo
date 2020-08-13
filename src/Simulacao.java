@@ -64,6 +64,10 @@ public class Simulacao {
     return encerra;
   }
 
+  public void atendePaciente() {
+
+  }
+
   public void iniciaSimulacao() {
     Paciente auxPaciente;
     Atendente auxAtendente;
@@ -75,18 +79,20 @@ public class Simulacao {
 
       // verifica se tem pessoas na fila
       if (auxPaciente != null) {
+        // verifica se tem atendente disponivel
         if (auxAtendente != null) {
           auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
           this.adicionaEvento(auxEvento);
         } else {
-          // executa logica de subtrair tempo atendemento e adicionar tempo na fila
+          // executa logica de subtrair tempo atendimento e adicionar tempo na fila
+          atendePaciente();
         }
       } else {
         // verifica se tem pessoas sendo atendidas
         if (atendimentosFinalizados()) {
           break;
         } else {
-
+          atendePaciente();
         }
       }
     }
