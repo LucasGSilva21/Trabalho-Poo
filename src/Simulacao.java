@@ -34,4 +34,8 @@ public class Simulacao {
 
     return paciente;
   }
+
+  public void adicionaEvento(Evento novoEvento) {
+    this.eventos.add(novoEvento);
+  }
 }
