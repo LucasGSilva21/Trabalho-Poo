@@ -125,7 +125,7 @@ public class Simulacao {
     // descobrir o menor tempo
     for (Evento evento : eventos) {
       // percorrer apenas os eventos iniciais
-      if (evento.getClass() == EventoInicioAtendimento.class) {
+      if (evento instanceof EventoInicioAtendimento) {
         EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
         if (eventoInicio.getTempoAtendimento().compareTo(menorTempo) < 0) {
           // atualiza o menor tempo

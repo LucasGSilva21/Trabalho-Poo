@@ -143,7 +143,7 @@ public abstract class AcessaDados {
     try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
       arq.write("\nAtendentes:\n");
       for (int i = 0; i < atendentes.size(); i++) {
-        if (atendentes.get(i).getClass() == AtendenteExperiente.class) {
+        if (atendentes.get(i) instanceof AtendenteExperiente) {
           arq.write("Atendente " + (i + 1) + "\tTipo: Experiente\t" + atendentes.get(i).toString());
         } else {
           arq.write("Atendente " + (i + 1) + "\tTipo: Novato\t" + atendentes.get(i).toString());
