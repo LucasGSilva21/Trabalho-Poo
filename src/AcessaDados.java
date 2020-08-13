@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+
 import atendentes.*;
 import pacientes.*;
 
@@ -19,10 +20,10 @@ public class AcessaDados {
       ArrayList<Atendente> atendentes = new ArrayList<Atendente>();
 
       for (int i = 0; i < experientes; i++) {
-        atendentes.add(new atendentes.AtendenteExperiente());
+        atendentes.add(new AtendenteExperiente());
       }
       for (int i = 0; i < novatos; i++) {
-        atendentes.add(new atendentes.AtendenteNovato());
+        atendentes.add(new AtendenteNovato());
       }
 
       System.out.println("Arquivo foi lido com sucesso!\n");
@@ -46,7 +47,7 @@ public class AcessaDados {
         if (campos[2].equals("normal")) {
           String[] tempoInteiro = campos[3].split(":");
           PacienteNormal paciente_normal = new PacienteNormal(campos[0], LocalTime.of(Integer.parseInt(tempoInteiro[0]),
-              Integer.parseInt(tempoInteiro[1]), Integer.parseInt(tempoInteiro[2])));
+              Integer.parseInt(tempoInteiro[1]), Integer.parseInt(tempoInteiro[2])), Integer.parseInt(campos[1]));
           pacientes.add(paciente_normal);
         }
         linha = arq.readLine();
@@ -72,8 +73,10 @@ public class AcessaDados {
         String[] campos = linha.split(" ");
         if (campos[2].equals("preferencial")) {
           String[] tempoInteiro = campos[3].split(":");
-          PacientePreferencial paciente_preferencial = new PacientePreferencial(campos[0], LocalTime.of(
-              Integer.parseInt(tempoInteiro[0]), Integer.parseInt(tempoInteiro[1]), Integer.parseInt(tempoInteiro[2])));
+          PacientePreferencial paciente_preferencial = new PacientePreferencial(campos[0],
+              LocalTime.of(Integer.parseInt(tempoInteiro[0]), Integer.parseInt(tempoInteiro[1]),
+                  Integer.parseInt(tempoInteiro[2])),
+              Integer.parseInt(campos[1]));
           pacientes.add(paciente_preferencial);
         }
         linha = arq.readLine();
