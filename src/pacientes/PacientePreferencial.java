@@ -1,9 +1,9 @@
 package pacientes;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class PacientePreferencial extends Paciente {
-  public PacientePreferencial(String nome, Time horario_chegada) {
+  public PacientePreferencial(String nome, LocalTime horario_chegada) {
     super(nome, horario_chegada);
   }
 }
