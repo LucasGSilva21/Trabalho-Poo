@@ -77,22 +77,32 @@ public class Simulacao {
     for (Evento evento : eventos) {
       // percorrer apenas os eventos iniciais
       if (evento.getClass() == EventoInicioAtendimento.class) {
-        if (menorTempo > evento.getTempoAtendimento()) {
+        EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
+        if (eventoInicio.getTempoAtendimento().compareTo(menorTempo) < 0) {
           // atualiza o menor tempo
         }
       }
     }
 
     // somar tempo total
-    this.tempoTotal = this.tempoTotal + menorTempo;
+    this.tempoTotal = this.tempoTotal.plusHours(menorTempo.getHour()).plusMinutes(menorTempo.getMinute())
+        .plusSeconds(menorTempo.getSecond());
 
     // subtrair tempo de atendimento menor de todos os eventos iniciais
     for (Evento evento : eventos) {
       if (evento.getClass() == EventoInicioAtendimento.class) {
-        evento.setTempoAtendimento(evento.getTempoAtendimento() - menorTempo);
+        EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
+
+        LocalTime tempoAtendimento = eventoInicio.getTempoAtendimento();
+        tempoAtendimento = tempoAtendimento.minusHours(menorTempo.getHour()).minusMinutes(menorTempo.getMinute())
+            .minusSeconds(menorTempo.getSecond());
+
+        eventoInicio.setTempoAtendimento(tempoAtendimento);
         // verifica se zerou
-        if (evento.getTempoAtendimento() == 0) {
+        if (eventoInicio.getTempoAtendimento().equals(LocalTime.of(0, 0))) {
           // adiciona um evento Fim no array
+          // remove o evento inicio do array
+          //
         }
       }
     }
