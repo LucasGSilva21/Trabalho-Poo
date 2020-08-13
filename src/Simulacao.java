@@ -16,16 +16,19 @@ public class Simulacao {
     ArrayList<PacientePreferencial> pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
   }
 
-  public void getPaciente() {
-    // Paciente novoPaciente;
+  public Paciente getPaciente() {
+    Paciente paciente;
 
-    // if fila prioritaria
-    // novoPaciente =
-    // else fila normal
-    // novoPaciente =
+    if (pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty()) {
+      return null;
+    } else if (pacientesPreferenciais.isEmpty()) {
+      paciente = pacientesNormais.get(0);
+      pacientesNormais.remove(0);
+    } else {
+      paciente = pacientesPreferenciais.get(0);
+      pacientesPreferenciais.remove(0);
+    }
 
-    // ...
-
-    // return novoPaciente;
+    return paciente;
   }
 }
