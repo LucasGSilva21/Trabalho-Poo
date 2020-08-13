@@ -18,6 +18,14 @@ public abstract class Paciente implements Comparable<Paciente> {
     return horario_chegada;
   }
 
+  public int getNumero_vacinas() {
+    return numero_vacinas;
+  }
+
+  public LocalTime getHorario_atendimento() {
+    return horario_atendimento;
+  }
+
   public void setHorarioAtendimento(LocalTime horario_atendimento) {
     this.horario_atendimento = horario_atendimento;
   }
