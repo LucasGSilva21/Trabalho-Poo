@@ -9,10 +9,29 @@ import java.util.ArrayList;
  */
 public class Simulacao {
 
+  /**
+   * Tempo total da simulação
+   */
   private LocalTime tempoTotal;
+
+  /**
+   * Array de atendentes
+   */
   private ArrayList<Atendente> atendentes;
+
+  /**
+   * Array de Pacientes Normais
+   */
   private ArrayList<PacienteNormal> pacientesNormais;
+
+  /**
+   * Array de Pacientes Preferenciais
+   */
   private ArrayList<PacientePreferencial> pacientesPreferenciais;
+
+  /**
+   * Array de Eventos
+   */
   private ArrayList<Evento> eventos;
 
   /**
@@ -20,12 +39,18 @@ public class Simulacao {
    */
   public Simulacao() {
     this.tempoTotal = LocalTime.of(00, 00, 00);
-    ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();
-    ArrayList<PacienteNormal> pacientesNormais = AcessaDados.lerPacientesNormal();
-    ArrayList<PacientePreferencial> pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
-    ArrayList<Evento> eventos = new ArrayList<Evento>();
+    this.atendentes = AcessaDados.lerAtendentes();
+    this.pacientesNormais = AcessaDados.lerPacientesNormal();
+    this.pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
+    this.eventos = new ArrayList<Evento>();
   }
 
+  /**
+   * Metodo responsavel por buscar e retornar um Paciente da fila
+   * 
+   * @param tempoAtual Tempo atual na simulação
+   * @return Paciente da fila
+   */
   public Paciente getPaciente(LocalTime tempoAtual) {
     Paciente paciente;
 
@@ -48,10 +73,20 @@ public class Simulacao {
     return null;
   }
 
+  /**
+   * Metodo responsavel por adicionar um Evento na fila de eventos
+   * 
+   * @param novoEvento Evento a ser adicionado na fila
+   */
   public void adicionaEvento(Evento novoEvento) {
     this.eventos.add(novoEvento);
   }
 
+  /**
+   * Metodo responsavel por buscar e retornar um Atendente disponivel
+   * 
+   * @return Atendente disponivel
+   */
   public Atendente verificaAtendenteLivre() {
     Atendente atendente = null;
 
@@ -64,6 +99,11 @@ public class Simulacao {
     return atendente;
   }
 
+  /**
+   * Metodo responsavel por verificar se os atendimentos foram finalizados
+   * 
+   * @return Booleando indicando se o atendimento foi finalizado
+   */
   public boolean atendimentosFinalizados() {
     boolean encerra = true;
 
@@ -76,6 +116,9 @@ public class Simulacao {
     return encerra;
   }
 
+  /**
+   * Metodo responsavel por inciar o atendimento de um Paciente
+   */
   public void atendePaciente() {
     LocalTime menorTempo = LocalTime.of(00, 00, 00);
 
@@ -118,6 +161,9 @@ public class Simulacao {
     }
   }
 
+  /**
+   * Metodo responsavel por iniciar a simulação
+   */
   public void iniciaSimulacao() {
     Paciente auxPaciente;
     Atendente auxAtendente;
