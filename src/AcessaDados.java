@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -84,6 +85,38 @@ public abstract class AcessaDados {
     } catch (IOException e) {
       System.out.println("Falha na leitura do arquivo ");
       return null;
+    }
+  }
+
+  public static void limparEstatisticas() {
+    try (FileWriter arq = new FileWriter("estatisticas.txt")) {
+      arq.write("Pacientes:\n");
+    } catch (IOException e) {
+      System.out.println("Falha ao limpar o arquivo");
+    }
+  }
+
+  public static void gravarEstatisticasPaciente(Paciente paciente) {
+    try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
+      arq.write(paciente.toString());
+    } catch (IOException e) {
+      System.out.println("Falha ao salvar no arquivo");
+    }
+  }
+
+  public static void gravarEstatisticasAtendente(ArrayList<Atendente> atendentes) {
+    try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
+      arq.write("\nAtendentes:\n");
+      for (int i = 0; i < atendentes.size(); i++) {
+        if (atendentes.get(i).getClass() == AtendenteExperiente.class) {
+          arq.write("Atendente " + (i + 1) + "\tTipo: Experiente\t" + atendentes.get(i).toString());
+        } else {
+          arq.write("Atendente " + (i + 1) + "\tTipo: Novato\t" + atendentes.get(i).toString());
+
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("Falha ao salvar no arquivo");
     }
   }
 }

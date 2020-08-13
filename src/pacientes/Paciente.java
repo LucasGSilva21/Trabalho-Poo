@@ -31,13 +31,13 @@ public abstract class Paciente implements Comparable<Paciente> {
   }
 
   @Override
-  public String toString() {
-    return "Nome: " + nome + "\tNúmero de Vacinas: " + numero_vacinas + "\nHorario de Chegada: " + horario_chegada
-        + "\tHorario de Atendimento: " + horario_atendimento + "\n";
+  public int compareTo(Paciente paciente2) {
+    return this.getHorario_chegada().compareTo(paciente2.getHorario_chegada());
   }
 
   @Override
-  public int compareTo(Paciente paciente2) {
-    return this.getHorario_chegada().compareTo(paciente2.getHorario_chegada());
+  public String toString() {
+    return "Nome: " + nome + "\tNúmero de Vacinas: " + numero_vacinas + "\tHorario de Chegada: " + horario_chegada
+        + "\tHorario de Atendimento: " + horario_atendimento + "\n";
   }
 }

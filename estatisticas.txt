@@ -1,0 +1,11 @@
+Pacientes:
+Nome: Rafael	Número de Vacinas: 2	Horario de Chegada: 10:20	Horario de Atendimento: null
+Nome: Jeverson	Número de Vacinas: 3	Horario de Chegada: 10:30	Horario de Atendimento: null
+Nome: Lucas	Número de Vacinas: 1	Horario de Chegada: 10:22	Horario de Atendimento: null
+
+Atendentes:
+Atendente 1	Tipo: Experiente	Número de Atendimentos: 0
+Atendente 2	Tipo: Experiente	Número de Atendimentos: 0
+Atendente 3	Tipo: Novato	Número de Atendimentos: 0
+Atendente 4	Tipo: Novato	Número de Atendimentos: 0
+Atendente 5	Tipo: Novato	Número de Atendimentos: 0
