@@ -14,6 +14,8 @@ public class Simulacao {
     // else fila normal
     // novoPaciente =
 
+    // ...
+
     // return novoPaciente;
   }
 }
