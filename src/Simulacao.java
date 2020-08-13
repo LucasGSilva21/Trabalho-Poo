@@ -4,6 +4,9 @@ import eventos.*;
 import java.time.*;
 import java.util.ArrayList;
 
+/**
+ * Classe responsavel por toda lógica da simulação
+ */
 public class Simulacao {
 
   private LocalTime tempoTotal;
@@ -12,6 +15,9 @@ public class Simulacao {
   private ArrayList<PacientePreferencial> pacientesPreferenciais;
   private ArrayList<Evento> eventos;
 
+  /**
+   * Construtor da Classe Simulação
+   */
   public Simulacao() {
     this.tempoTotal = LocalTime.of(00, 00, 00);
     ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();

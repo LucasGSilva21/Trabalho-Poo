@@ -9,8 +9,16 @@ import java.util.ArrayList;
 import atendentes.*;
 import pacientes.*;
 
+/**
+ * Classe Abstrata responsavel pela leitura e escrita nos arquivos de texto
+ */
 public abstract class AcessaDados {
 
+  /**
+   * Metodo estático responsavel por ler os Atendentes do arquivo de texto
+   * 
+   * @return Array de Atendentes
+   */
   public static ArrayList<Atendente> lerAtendentes() {
     try (BufferedReader arq = new BufferedReader(new FileReader("dadosEntrada.txt"))) {
       String linha = arq.readLine();
@@ -36,6 +44,11 @@ public abstract class AcessaDados {
     }
   }
 
+  /**
+   * Metodo estático responsavel por ler os Pacientes Normais do arquivo de texto
+   * 
+   * @return Array de Pacientes Normais
+   */
   public static ArrayList<PacienteNormal> lerPacientesNormal() {
     try (BufferedReader arq = new BufferedReader(new FileReader("dadosEntrada.txt"))) {
       String linha = arq.readLine();
@@ -61,6 +74,12 @@ public abstract class AcessaDados {
     }
   }
 
+  /**
+   * Metodo estático responsavel por ler os Pacientes Preferenciais do arquivo de
+   * texto
+   * 
+   * @return Array de Pacientes Preferenciais
+   */
   public static ArrayList<PacientePreferencial> lerPacientesPreferencial() {
     try (BufferedReader arq = new BufferedReader(new FileReader("dadosEntrada.txt"))) {
       String linha = arq.readLine();
@@ -88,6 +107,10 @@ public abstract class AcessaDados {
     }
   }
 
+  /**
+   * Metodo estático responsavel por limpar o arquivo de texto contendo as
+   * estatisticas
+   */
   public static void limparEstatisticas() {
     try (FileWriter arq = new FileWriter("estatisticas.txt")) {
       arq.write("Pacientes:\n");
@@ -96,6 +119,12 @@ public abstract class AcessaDados {
     }
   }
 
+  /**
+   * Metodo estático responsavel por escrever as estatisticas de um Paciente no
+   * arquivo de texto
+   * 
+   * @param paciente Paciente que será escrito no arquivo de texto
+   */
   public static void gravarEstatisticasPaciente(Paciente paciente) {
     try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
       arq.write(paciente.toString());
@@ -104,6 +133,12 @@ public abstract class AcessaDados {
     }
   }
 
+  /**
+   * Metodo estático responsavel por escrever as estatisticas dos Atendentes no
+   * arquivo de texto
+   * 
+   * @param atendentes Array de Atendentes que serão escritos no arquivo de texto
+   */
   public static void gravarEstatisticasAtendente(ArrayList<Atendente> atendentes) {
     try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
       arq.write("\nAtendentes:\n");
