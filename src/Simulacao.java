@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 public class Simulacao {
 
-  private static LocalTime tempoTotal;
+  private LocalTime tempoTotal;
   private ArrayList<Atendente> atendentes;
   private ArrayList<PacienteNormal> pacientesNormais;
   private ArrayList<PacientePreferencial> pacientesPreferenciais;
   private ArrayList<Evento> eventos;
 
   public Simulacao() {
+    this.tempoTotal = LocalTime.of(00, 00, 00);
     ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();
     ArrayList<PacienteNormal> pacientesNormais = AcessaDados.lerPacientesNormal();
     ArrayList<PacientePreferencial> pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
@@ -75,7 +76,7 @@ public class Simulacao {
       // verifica se tem pessoas na fila
       if (auxPaciente != null) {
         if (auxAtendente != null) {
-          auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente);
+          auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
           this.adicionaEvento(auxEvento);
         } else {
           // executa logica de subtrair tempo atendemento e adicionar tempo na fila

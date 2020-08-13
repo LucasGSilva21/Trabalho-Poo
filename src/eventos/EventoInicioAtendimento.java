@@ -11,7 +11,7 @@ public class EventoInicioAtendimento extends Evento {
   private Atendente atendente;
   private Paciente paciente;
 
-  public EventoInicioAtendimento(Atendente atendente, Paciente paciente) {
+  public EventoInicioAtendimento(Atendente atendente, Paciente paciente, LocalTime tempoTotal) {
     int tempo = atendente.verificaFicha() + (atendente.aplicaVacina() * paciente.getNumero_vacinas());
 
     this.tempoTotal = LocalTime.of(00, tempo, 00);
@@ -20,10 +20,10 @@ public class EventoInicioAtendimento extends Evento {
     this.paciente = paciente;
 
     this.atendente.setOcupado(true);
+    this.paciente.setHorarioAtendimento(tempoTotal);
   }
 
-  public void setHoraAtendimentoPaciente() {
-    // atualiza a hora de atendimento do paciente, para calcular o tmepo de espera
-    // na fila
+  public void setTempoAtendimento(LocalTime tempo) {
+    this.tempoAtendimento = tempo;
   }
 }
