@@ -17,4 +17,10 @@ public abstract class Paciente {
   public void setHorarioAtendimento(LocalTime horario_atendimento) {
     this.horario_atendimento = horario_atendimento;
   }
+
+  @Override
+  public String toString() {
+    return "Nome: " + nome + "\tNúmero de Vacinas: " + numero_vacinas + "\nHorario de Chegada: " + horario_chegada
+        + "\tHorario de Atendimento: " + horario_atendimento;
+  }
 }

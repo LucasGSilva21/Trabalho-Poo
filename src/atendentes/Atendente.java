@@ -27,4 +27,9 @@ public abstract class Atendente {
   public void adicionaAtendimento() {
     this.numero_atendimentos++;
   }
+
+  @Override
+  public String toString() {
+    return "Número de Atendimentos: " + numero_atendimentos;
+  }
 }
