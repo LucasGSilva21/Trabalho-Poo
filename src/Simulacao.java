@@ -7,6 +7,8 @@ public class Simulacao {
 
   private static LocalTime tempoTotal;
   private ArrayList<Atendente> atendentes;
+  private ArrayList<PacienteNormal> pacientesNormais;
+  private ArrayList<PacientePreferencial> pacientesPreferenciais;
 
   public Simulacao() {
     ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();
