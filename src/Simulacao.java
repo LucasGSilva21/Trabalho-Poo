@@ -38,4 +38,29 @@ public class Simulacao {
   public void adicionaEvento(Evento novoEvento) {
     this.eventos.add(novoEvento);
   }
+
+  public Atendente verificaAtendenteLivre() {
+    Atendente atendente = null;
+
+    for (Atendente a : atendentes) {
+      if (a.getOcupado()) {
+        a.setOcupado(true);
+        atendente = a;
+      }
+    }
+
+    return atendente;
+  }
+
+  public void iniciaSimulacao() {
+
+    while (true) {
+      /*
+       * if(tem pessoa na fila){ if(verifica atendente livre){ adiciona evento
+       * iniciaAtendimento }else{ espera - atualiza tempo de fila e executa os
+       * atendimentos } }else{ if(todas atendentes tao desocupadas?){ *encerra } }
+       */
+    }
+
+  }
 }

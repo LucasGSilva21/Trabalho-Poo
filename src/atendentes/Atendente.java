@@ -16,6 +16,10 @@ public abstract class Atendente {
     this.ocupado = ocupado;
   }
 
+  public boolean getOcupado() {
+    return this.ocupado;
+  }
+
   public int verificaFicha() {
     return tempo_ficha;
   };
