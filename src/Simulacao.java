@@ -162,6 +162,15 @@ public class Simulacao {
   }
 
   /**
+   * Metodo responsavel por verificar se a Fila de Pacientes esta vazia
+   * 
+   * @return Booleando indicando se a fila esta vazia
+   */
+  private boolean verificaFilaVazia() {
+    return pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty();
+  }
+
+  /**
    * Metodo responsavel por iniciar a simulação
    */
   public void iniciaSimulacao() {
@@ -187,7 +196,7 @@ public class Simulacao {
         }
       } else {
         // verifica se tem pessoas sendo atendidas
-        if (atendimentosFinalizados() && pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty()) {
+        if (atendimentosFinalizados() && verificaFilaVazia()) {
           finalizado = true;
         } else {
           atendePaciente();
