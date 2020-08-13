@@ -12,7 +12,7 @@ public class EventoFimAtendimento extends Evento {
    * 
    * @param atendente Atendente responsavel pelo Evento
    */
-  EventoFimAtendimento(Atendente atendente) {
+  public EventoFimAtendimento(Atendente atendente) {
     super(atendente);
     // desocupa o atendente
     getAtendente().setOcupado(false);

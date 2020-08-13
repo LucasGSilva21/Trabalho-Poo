@@ -57,4 +57,14 @@ public class EventoInicioAtendimento extends Evento {
   public LocalTime getTempoAtendimento() {
     return this.tempoAtendimento;
   }
+
+  /**
+   * Metodo responsavel por retornar o tempo total de atendimento
+   * 
+   * @return Tempo de Atendimento
+   */
+  public LocalTime getTempoTotal() {
+    return this.tempoTotal;
+  }
+
 }

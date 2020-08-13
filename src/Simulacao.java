@@ -46,6 +46,15 @@ public class Simulacao {
   }
 
   /**
+   * Metodo responsavel por retornar
+   * 
+   * @return Paciente da fila
+   */
+  public LocalTime getTempoTotal() {
+    return this.tempoTotal;
+  }
+
+  /**
    * Metodo responsavel por buscar e retornar um Paciente da fila
    * 
    * @param tempoAtual Tempo atual na simulação
@@ -151,11 +160,10 @@ public class Simulacao {
         // verifica se zerou
         if (eventoInicio.getTempoAtendimento().equals(LocalTime.of(0, 0))) {
           // adiciona um evento Fim no array
-          Evento novoEvento = new EventoInicioAtendimento(verificaAtendenteLivre(), getPaciente(tempoTotal),
-              tempoTotal);
-          adicionaEvento(novoEvento);
+          Evento novoEventoFim = new EventoFimAtendimento(eventoInicio.getAtendente());
+          adicionaEvento(novoEventoFim);
           // remove o evento inicio do array
-          eventos.remove(0);
+          // eventos.remove(0);
         }
       }
     }
@@ -181,24 +189,26 @@ public class Simulacao {
     boolean finalizado = false;
 
     while (!finalizado) {
-      auxPaciente = this.getPaciente(tempoTotal);
-      auxAtendente = this.verificaAtendenteLivre();
+      System.out.println(this.getTempoTotal());
+      // verifica se tem pessoas sendo atendidas
+      if (atendimentosFinalizados() && verificaFilaVazia()) {
+        finalizado = true;
+      } else {
+        // verifica se tem pessoas na fila
+        if (!verificaFilaVazia()) {
+          // verifica se tem atendente disponivel
+          auxPaciente = this.getPaciente(tempoTotal);
+          auxAtendente = this.verificaAtendenteLivre();
 
-      // verifica se tem pessoas na fila
-      if (auxPaciente != null) {
-        // verifica se tem atendente disponivel
-        if (auxAtendente != null) {
-          auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
-          this.adicionaEvento(auxEvento);
+          if (auxAtendente != null) {
+            auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
+            this.adicionaEvento(auxEvento);
+          } else {
+            // executa logica de subtrair tempo atendimento e adicionar tempo na fila
+            atendePaciente();
+          }
         } else {
           // executa logica de subtrair tempo atendimento e adicionar tempo na fila
-          atendePaciente();
-        }
-      } else {
-        // verifica se tem pessoas sendo atendidas
-        if (atendimentosFinalizados() && verificaFilaVazia()) {
-          finalizado = true;
-        } else {
           atendePaciente();
         }
       }
