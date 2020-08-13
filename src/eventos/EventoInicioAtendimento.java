@@ -36,7 +36,7 @@ public class EventoInicioAtendimento extends Evento {
     this.tempoAtendimento = LocalTime.of(00, tempo, 00);
     this.paciente = paciente;
 
-    this.atendente.setOcupado(true);
+    getAtendente().setOcupado(true);
     this.paciente.setHorarioAtendimento(tempoTotal);
   }
 

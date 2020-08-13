@@ -14,6 +14,7 @@ public class EventoFimAtendimento extends Evento {
    */
   EventoFimAtendimento(Atendente atendente) {
     super(atendente);
-    this.atendente.setOcupado(false);
+    // desocupa o atendente
+    getAtendente().setOcupado(false);
   }
 }

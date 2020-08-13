@@ -56,7 +56,7 @@ public class Simulacao {
     Atendente atendente = null;
 
     for (Atendente a : atendentes) {
-      if (a.getOcupado()) {
+      if (!a.getOcupado()) {
         atendente = a;
       }
     }
@@ -86,6 +86,7 @@ public class Simulacao {
         EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
         if (eventoInicio.getTempoAtendimento().compareTo(menorTempo) < 0) {
           // atualiza o menor tempo
+          menorTempo = eventoInicio.getTempoAtendimento();
         }
       }
     }
@@ -107,8 +108,11 @@ public class Simulacao {
         // verifica se zerou
         if (eventoInicio.getTempoAtendimento().equals(LocalTime.of(0, 0))) {
           // adiciona um evento Fim no array
+          Evento novoEvento = new EventoInicioAtendimento(verificaAtendenteLivre(), getPaciente(tempoTotal),
+              tempoTotal);
+          adicionaEvento(novoEvento);
           // remove o evento inicio do array
-          //
+          eventos.remove(0);
         }
       }
     }
@@ -119,7 +123,9 @@ public class Simulacao {
     Atendente auxAtendente;
     Evento auxEvento;
 
-    while (true) {
+    boolean finalizado = false;
+
+    while (!finalizado) {
       auxPaciente = this.getPaciente(tempoTotal);
       auxAtendente = this.verificaAtendenteLivre();
 
@@ -135,8 +141,8 @@ public class Simulacao {
         }
       } else {
         // verifica se tem pessoas sendo atendidas
-        if (atendimentosFinalizados()) {
-          break;
+        if (atendimentosFinalizados() && pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty()) {
+          finalizado = true;
         } else {
           atendePaciente();
         }

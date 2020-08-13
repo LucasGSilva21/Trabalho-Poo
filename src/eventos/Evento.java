@@ -9,7 +9,7 @@ public abstract class Evento {
   /**
    * Atendente responsavel pelo Evento
    */
-  protected Atendente atendente;
+  private Atendente atendente;
 
   /**
    * Construtor da Classe Pai Evento
@@ -18,5 +18,14 @@ public abstract class Evento {
    */
   public Evento(Atendente atendente) {
     this.atendente = atendente;
+  }
+
+  /**
+   * Metodo responsavel por retornar o Atendente responsavel pelo Evento
+   * 
+   * @return Atendente responsavel pelo Evento
+   */
+  public Atendente getAtendente() {
+    return atendente;
   }
 }
