@@ -1,5 +1,6 @@
-2 3
-Rafael 2 normal 10:20:00
-Velha 2 preferencial 10:40:00
-Jeverson 3 normal 10:30:00
+1 2
+Rafael 2 normal 10:23:00
+Idosa 2 preferencial 10:41:00
+Idoso 1 preferencial 10:53:00
+Jeverson 3 normal 10:37:00
 Lucas 1 normal 10:22:00

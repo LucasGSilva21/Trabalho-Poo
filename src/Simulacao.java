@@ -51,7 +51,7 @@ public class Simulacao {
    * @param tempoAtual Tempo atual na simulação
    * @return Paciente da fila
    */
-  public Paciente getPaciente(LocalTime tempoAtual) {
+  private Paciente getPaciente(LocalTime tempoAtual) {
     Paciente paciente;
 
     for (PacientePreferencial pacientePreferencial : pacientesPreferenciais) {
@@ -78,7 +78,7 @@ public class Simulacao {
    * 
    * @param novoEvento Evento a ser adicionado na fila
    */
-  public void adicionaEvento(Evento novoEvento) {
+  private void adicionaEvento(Evento novoEvento) {
     this.eventos.add(novoEvento);
   }
 
@@ -87,7 +87,7 @@ public class Simulacao {
    * 
    * @return Atendente disponivel
    */
-  public Atendente verificaAtendenteLivre() {
+  private Atendente verificaAtendenteLivre() {
     Atendente atendente = null;
 
     for (Atendente a : atendentes) {
@@ -104,7 +104,7 @@ public class Simulacao {
    * 
    * @return Booleando indicando se o atendimento foi finalizado
    */
-  public boolean atendimentosFinalizados() {
+  private boolean atendimentosFinalizados() {
     boolean encerra = true;
 
     for (Atendente atendente : atendentes) {
@@ -119,7 +119,7 @@ public class Simulacao {
   /**
    * Metodo responsavel por inciar o atendimento de um Paciente
    */
-  public void atendePaciente() {
+  private void atendePaciente() {
     LocalTime menorTempo = LocalTime.of(00, 00, 00);
 
     // descobrir o menor tempo
