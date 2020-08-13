@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import atendentes.*;
 import pacientes.*;
 
-public class AcessaDados {
+public abstract class AcessaDados {
 
   public static ArrayList<Atendente> lerAtendentes() {
     try (BufferedReader arq = new BufferedReader(new FileReader("dadosEntrada.txt"))) {
@@ -25,8 +25,6 @@ public class AcessaDados {
       for (int i = 0; i < novatos; i++) {
         atendentes.add(new AtendenteNovato());
       }
-
-      System.out.println("Arquivo foi lido com sucesso!\n");
       return atendentes;
     } catch (FileNotFoundException e) {
       System.out.println("Não foi possível ler o arquivo ");
@@ -52,8 +50,6 @@ public class AcessaDados {
         }
         linha = arq.readLine();
       }
-
-      System.out.println("Arquivo foi lido com sucesso!\n");
       return pacientes;
     } catch (FileNotFoundException e) {
       System.out.println("Não foi possível ler o arquivo ");
@@ -81,8 +77,6 @@ public class AcessaDados {
         }
         linha = arq.readLine();
       }
-
-      System.out.println("Arquivo foi lido com sucesso!\n");
       return pacientes;
     } catch (FileNotFoundException e) {
       System.out.println("Não foi possível ler o arquivo ");
