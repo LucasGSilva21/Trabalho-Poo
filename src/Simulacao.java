@@ -44,7 +44,6 @@ public class Simulacao {
 
     for (Atendente a : atendentes) {
       if (a.getOcupado()) {
-        a.setOcupado(true);
         atendente = a;
       }
     }
@@ -52,15 +51,44 @@ public class Simulacao {
     return atendente;
   }
 
-  public void iniciaSimulacao() {
+  public boolean atendimentosFinalizados() {
+    boolean encerra = true;
 
-    while (true) {
-      /*
-       * if(tem pessoa na fila){ if(verifica atendente livre){ adiciona evento
-       * iniciaAtendimento }else{ espera - atualiza tempo de fila e executa os
-       * atendimentos } }else{ if(todas atendentes tao desocupadas?){ *encerra } }
-       */
+    for (Atendente atendente : atendentes) {
+      if (atendente.getOcupado()) {
+        encerra = false;
+      }
     }
 
+    return encerra;
   }
+
+  public void iniciaSimulacao() {
+    Paciente auxPaciente;
+    Atendente auxAtendente;
+    Evento auxEvento;
+
+    while (true) {
+      auxPaciente = this.getPaciente();
+      auxAtendente = this.verificaAtendenteLivre();
+
+      // verifica se tem pessoas na fila
+      if (auxPaciente != null) {
+        if (auxAtendente != null) {
+          auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente);
+          this.adicionaEvento(auxEvento);
+        } else {
+          // executa logica de subtrair tempo atendemento e adicionar tempo na fila
+        }
+      } else {
+        // verifica se tem pessoas sendo atendidas
+        if (atendimentosFinalizados()) {
+          break;
+        } else {
+
+        }
+      }
+    }
+  }
+
 }
