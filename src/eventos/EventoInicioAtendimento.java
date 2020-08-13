@@ -1,25 +1,29 @@
 package eventos;
 
+import java.time.LocalTime;
+import atendentes.*;
+import pacientes.*;
+
 public class EventoInicioAtendimento extends Evento {
 
-  public EventoInicioAtendimento() {
+  private LocalTime tempoTotal;
+  private LocalTime tempoAtendimento;
+  private Atendente atendente;
+  private Paciente paciente;
 
-  }
+  public EventoInicioAtendimento(Atendente atendente, Paciente paciente) {
+    int tempo = atendente.verificaFicha() + (atendente.aplicaVacina() * paciente.getNumero_vacinas());
 
-  public void setAtendenteOcupado() {
-    // atualiza ar
+    this.tempoTotal = LocalTime.of(00, tempo, 00);
+    this.tempoAtendimento = LocalTime.of(00, tempo, 00);
+    this.atendente = atendente;
+    this.paciente = paciente;
+
+    this.atendente.setOcupado(true);
   }
 
   public void setHoraAtendimentoPaciente() {
     // atualiza a hora de atendimento do paciente, para calcular o tmepo de espera
     // na fila
-  }
-
-  public void eventoVerificaFicha() {
-    // pega o tempo gasto com a verificação da ficha
-  }
-
-  public void eventoAplicaVacina() {
-    // pega o tempo gasto com a aplicação da vacina
   }
 }
