@@ -129,7 +129,7 @@ public class Simulacao {
    * Metodo responsavel por inciar o atendimento de um Paciente
    */
   private void atendePaciente() {
-    LocalTime menorTempo = LocalTime.of(00, 00, 00);
+    LocalTime menorTempo = LocalTime.of(23, 59, 59);
 
     // descobrir o menor tempo
     for (Evento evento : eventos) {
@@ -147,6 +147,9 @@ public class Simulacao {
     this.tempoTotal = this.tempoTotal.plusHours(menorTempo.getHour()).plusMinutes(menorTempo.getMinute())
         .plusSeconds(menorTempo.getSecond());
 
+    System.out.println(menorTempo);
+    // System.out.println(this.tempoTotal);
+
     // subtrair tempo de atendimento menor de todos os eventos iniciais
     for (Evento evento : eventos) {
       if (evento.getClass() == EventoInicioAtendimento.class) {
@@ -163,7 +166,7 @@ public class Simulacao {
           Evento novoEventoFim = new EventoFimAtendimento(eventoInicio.getAtendente());
           adicionaEvento(novoEventoFim);
           // remove o evento inicio do array
-          // eventos.remove(0);
+          eventos.remove(evento);
         }
       }
     }
@@ -189,9 +192,10 @@ public class Simulacao {
     boolean finalizado = false;
 
     while (!finalizado) {
-      System.out.println(this.getTempoTotal());
+      // System.out.println(this.getTempoTotal());
       // verifica se tem pessoas sendo atendidas
-      if (atendimentosFinalizados() && verificaFilaVazia()) {
+      // atendimentosFinalizados() &&
+      if (verificaFilaVazia()) {
         finalizado = true;
       } else {
         // verifica se tem pessoas na fila
