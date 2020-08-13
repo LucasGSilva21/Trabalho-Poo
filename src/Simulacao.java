@@ -16,7 +16,7 @@ public class Simulacao {
     ArrayList<Atendente> atendentes = AcessaDados.lerAtendentes();
     ArrayList<PacienteNormal> pacientesNormais = AcessaDados.lerPacientesNormal();
     ArrayList<PacientePreferencial> pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
-    ArrayList<Evento> eventos = new ArrayList<>();
+    ArrayList<Evento> eventos = new ArrayList<Evento>();
   }
 
   public Paciente getPaciente() {
