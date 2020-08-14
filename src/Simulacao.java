@@ -133,23 +133,21 @@ public class Simulacao {
   private void atendePaciente() {
     LocalTime menorTempo = LocalTime.of(23, 59, 59);
 
-    // descobrir o menor tempo
+    // descobre o menor tempo
     for (Evento evento : eventos) {
-      // percorrer apenas os eventos iniciais
       if (evento instanceof EventoInicioAtendimento) {
         EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
         if (eventoInicio.getTempoAtendimento().compareTo(menorTempo) < 0) {
-          // atualiza o menor tempo
           menorTempo = eventoInicio.getTempoAtendimento();
         }
       }
     }
 
-    // somar tempo total
+    // atualiza tempo total
     this.tempoTotal = this.tempoTotal.plusHours(menorTempo.getHour()).plusMinutes(menorTempo.getMinute())
         .plusSeconds(menorTempo.getSecond());
 
-    // subtrair tempo de atendimento menor de todos os eventos iniciais
+    // atualiza tempo de atendimento
     for (int i = 0; i < eventos.size(); i++) {
       if (eventos.get(i).getClass() == EventoInicioAtendimento.class) {
         EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) eventos.get(i);
@@ -159,7 +157,7 @@ public class Simulacao {
             .minusSeconds(menorTempo.getSecond());
 
         eventoInicio.setTempoAtendimento(tempoAtendimento);
-        // verifica se zerou
+        // verifica se zerou o tempo de atendimento
         if (eventoInicio.getTempoAtendimento().equals(LocalTime.of(0, 0))) {
           // adiciona um evento Fim no array
           Evento novoEventoFim = new EventoFimAtendimento(eventoInicio.getAtendente());
@@ -191,12 +189,11 @@ public class Simulacao {
     boolean finalizado = false;
 
     while (!finalizado) {
-      // verifica se tem pessoas sendo atendidas
-      // atendimentosFinalizados() &&
+      // verifica se tem pacientes sendo atendidos
       if (atendimentosFinalizados() && verificaFilaVazia()) {
         finalizado = true;
       } else {
-        // verifica se tem pessoas na fila
+        // verifica se tem pacientes na fila
         if (!verificaFilaVazia()) {
           // verifica se tem atendente disponivel
           auxPaciente = this.getPaciente(tempoTotal);
@@ -210,15 +207,16 @@ public class Simulacao {
                 .plusMinutes(tempoTotal.getMinute()).plusSeconds(tempoTotal.getSecond()));
             AcessaDados.gravarEstatisticasPaciente(auxPaciente);
           } else {
-            // executa logica de subtrair tempo atendimento e adicionar tempo na fila
+            // executa os atendimentos até liberar um atendente
             atendePaciente();
           }
         } else {
-          // executa logica de subtrair tempo atendimento e adicionar tempo na fila
+          // finaliza os atendimentos restantes
           atendePaciente();
         }
       }
     }
+    // grava as estatísticas da simulação
     AcessaDados.gravarEstatisticasAtendente(atendentes);
     AcessaDados.gravarEstatisticasGerais(tempoTotal, Evento.getNumeroEventos());
   }

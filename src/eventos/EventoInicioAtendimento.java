@@ -26,7 +26,7 @@ public class EventoInicioAtendimento extends Evento {
    * 
    * @param atendente  Atendente responsavel pelo Evento
    * @param paciente   Paciente a ser atendido no Evento
-   * @param tempoTotal
+   * @param tempoTotal Tempo total atual da simulação
    */
   public EventoInicioAtendimento(Atendente atendente, Paciente paciente, LocalTime tempoTotal) {
     super(atendente);
