@@ -56,6 +56,15 @@ public abstract class Atendente {
   }
 
   /**
+   * Metodo responsavel por retornar o número de atendimentos do Atendente
+   * 
+   * @return Número de atendimentos
+   */
+  public int getNumero_atendimentos() {
+    return numero_atendimentos;
+  }
+
+  /**
    * Metodo responsavel pela verificação da ficha do Paciente por um Atendente
    * 
    * @return Tempo em minutos de duração para checagem da ficha do Paciente

@@ -144,6 +144,7 @@ public abstract class AcessaDados {
    * @param atendentes Array de Atendentes que serão escritos no arquivo de texto
    */
   public static void gravarEstatisticasAtendente(ArrayList<Atendente> atendentes) {
+    gravarEstatisticasGrafico(atendentes);
     try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
       arq.write("\nAtendentes:\n");
       for (int i = 0; i < atendentes.size(); i++) {
@@ -151,7 +152,26 @@ public abstract class AcessaDados {
           arq.write("Atendente " + (i + 1) + "\tTipo: Experiente\t" + atendentes.get(i).toString());
         } else {
           arq.write("Atendente " + (i + 1) + "\tTipo: Novato\t" + atendentes.get(i).toString());
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("Falha ao salvar no arquivo");
+    }
+  }
 
+  /**
+   * Metodo estático responsavel por escrever as estatisticas no arquivo de texto
+   * para o grafico
+   * 
+   * @param atendentes Array de Atendentes que serão escritos no arquivo de texto
+   */
+  private static void gravarEstatisticasGrafico(ArrayList<Atendente> atendentes) {
+    try (FileWriter arq = new FileWriter("estatisticasGrafico.txt")) {
+      for (int i = 0; i < atendentes.size(); i++) {
+        if (atendentes.get(i) instanceof AtendenteExperiente) {
+          arq.write((i + 1) + " Experiente " + atendentes.get(i).getNumero_atendimentos() + "\n");
+        } else {
+          arq.write((i + 1) + " Novato " + atendentes.get(i).getNumero_atendimentos() + "\n");
         }
       }
     } catch (IOException e) {

@@ -149,9 +149,6 @@ public class Simulacao {
     this.tempoTotal = this.tempoTotal.plusHours(menorTempo.getHour()).plusMinutes(menorTempo.getMinute())
         .plusSeconds(menorTempo.getSecond());
 
-    System.out.println(menorTempo);
-    // System.out.println(this.tempoTotal);
-
     // subtrair tempo de atendimento menor de todos os eventos iniciais
     for (int i = 0; i < eventos.size(); i++) {
       if (eventos.get(i).getClass() == EventoInicioAtendimento.class) {
@@ -194,7 +191,6 @@ public class Simulacao {
     boolean finalizado = false;
 
     while (!finalizado) {
-      // System.out.println(this.getTempoTotal());
       // verifica se tem pessoas sendo atendidas
       // atendimentosFinalizados() &&
       if (atendimentosFinalizados() && verificaFilaVazia()) {
@@ -226,5 +222,4 @@ public class Simulacao {
     AcessaDados.gravarEstatisticasAtendente(atendentes);
     AcessaDados.gravarEstatisticasGerais(tempoTotal, Evento.getNumeroEventos());
   }
-
 }
