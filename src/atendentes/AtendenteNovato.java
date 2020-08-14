@@ -11,7 +11,7 @@ public class AtendenteNovato extends Atendente {
    * Construtor da subclasse AtendenteNovato
    */
   public AtendenteNovato() {
-    super(4, 1);
+    super(3, 2);
     this.tempo_tirar_duvida = 1;
   }
 
