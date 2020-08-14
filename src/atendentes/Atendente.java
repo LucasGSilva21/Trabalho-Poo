@@ -22,7 +22,7 @@ public abstract class Atendente {
   /**
    * Tempo de duração em minutos da checagem da ficha do Paciente
    */
-  final private int tempo_ficha;
+  final protected int tempo_ficha;
 
   /**
    * Construtor da Classe Pai Atendente
@@ -57,12 +57,8 @@ public abstract class Atendente {
 
   /**
    * Metodo responsavel pela verificação da ficha do Paciente por um Atendente
-   * 
-   * @return Tempo em minutos de duração para checagem da ficha do Paciente
    */
-  public int verificaFicha() {
-    return tempo_ficha;
-  };
+  public abstract int verificaFicha();
 
   /**
    * Metodo responsavel pela aplicação da vacina por um Atendente
