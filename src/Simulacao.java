@@ -130,6 +130,7 @@ public class Simulacao {
    */
   private void atendePaciente() {
     LocalTime menorTempo = LocalTime.of(23, 59, 59);
+    System.out.println("opa");
 
     // descobrir o menor tempo
     for (Evento evento : eventos) {
@@ -151,9 +152,9 @@ public class Simulacao {
     // System.out.println(this.tempoTotal);
 
     // subtrair tempo de atendimento menor de todos os eventos iniciais
-    for (Evento evento : eventos) {
-      if (evento.getClass() == EventoInicioAtendimento.class) {
-        EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) evento;
+    for (int i = 0; i < eventos.size(); i++) {
+      if (eventos.get(i).getClass() == EventoInicioAtendimento.class) {
+        EventoInicioAtendimento eventoInicio = (EventoInicioAtendimento) eventos.get(i);
 
         LocalTime tempoAtendimento = eventoInicio.getTempoAtendimento();
         tempoAtendimento = tempoAtendimento.minusHours(menorTempo.getHour()).minusMinutes(menorTempo.getMinute())
@@ -166,7 +167,7 @@ public class Simulacao {
           Evento novoEventoFim = new EventoFimAtendimento(eventoInicio.getAtendente());
           adicionaEvento(novoEventoFim);
           // remove o evento inicio do array
-          eventos.remove(evento);
+          eventos.remove(eventos.get(i));
         }
       }
     }
@@ -195,7 +196,7 @@ public class Simulacao {
       // System.out.println(this.getTempoTotal());
       // verifica se tem pessoas sendo atendidas
       // atendimentosFinalizados() &&
-      if (verificaFilaVazia()) {
+      if (atendimentosFinalizados() && verificaFilaVazia()) {
         finalizado = true;
       } else {
         // verifica se tem pessoas na fila
@@ -217,6 +218,7 @@ public class Simulacao {
         }
       }
     }
+    AcessaDados.gravarEstatisticasAtendente(atendentes);
   }
 
 }
