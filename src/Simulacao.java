@@ -180,7 +180,7 @@ public class Simulacao {
 
   private void removeEventosFim() {
     for (int i = 0; i < eventos.size(); i++) {
-      if (eventos.get(i).getClass() == EventoFimAtendimento.class) {
+      if (eventos.get(i) instanceof EventoFimAtendimento) {
         eventos.remove(eventos.get(i));
       }
     }

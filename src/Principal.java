@@ -6,7 +6,8 @@ public class Principal {
     System.out.println("Bem-vindo");
 
     final Simulacao simulacao = new Simulacao();
-    simulacao.iniciaSimulacao();
     System.out.println("Executando Simulação...");
+    simulacao.iniciaSimulacao();
+    System.out.println("Simulação Finalizada.");
   }
 }
