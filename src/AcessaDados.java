@@ -127,7 +127,11 @@ public abstract class AcessaDados {
    */
   public static void gravarEstatisticasPaciente(Paciente paciente) {
     try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
-      arq.write(paciente.toString());
+      arq.write(paciente.toString() + "\tTempo de fila: "
+          + paciente.getHorario_atendimento().minusHours(paciente.getHorario_chegada().getHour())
+              .minusMinutes(paciente.getHorario_chegada().getMinute())
+              .minusSeconds(paciente.getHorario_chegada().getSecond())
+          + '\n');
     } catch (IOException e) {
       System.out.println("Falha ao salvar no arquivo");
     }
@@ -150,6 +154,22 @@ public abstract class AcessaDados {
 
         }
       }
+    } catch (IOException e) {
+      System.out.println("Falha ao salvar no arquivo");
+    }
+  }
+
+  /**
+   * Metodo estático responsavel por escrever as estatisticas gerais da simulação
+   * no arquivo de texto
+   * 
+   * @param tempoTotal Tempo total de Simulação
+   */
+  public static void gravarEstatisticasGerais(LocalTime tempoTotal, int numeroEventos) {
+    try (FileWriter arq = new FileWriter("estatisticas.txt", true)) {
+      arq.write("\nEstatisticas Gerais:\n");
+      arq.write("Tempo simulado total: " + tempoTotal + "\n");
+      arq.write("Número de eventos tratados: " + numeroEventos + "\n");
     } catch (IOException e) {
       System.out.println("Falha ao salvar no arquivo");
     }
