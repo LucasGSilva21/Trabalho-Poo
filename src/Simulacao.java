@@ -178,6 +178,14 @@ public class Simulacao {
     return pacientesNormais.isEmpty() && pacientesPreferenciais.isEmpty();
   }
 
+  private void removeEventosFim() {
+    for (int i = 0; i < eventos.size(); i++) {
+      if (eventos.get(i).getClass() == EventoFimAtendimento.class) {
+        eventos.remove(eventos.get(i));
+      }
+    }
+  }
+
   /**
    * Metodo responsavel por iniciar a simulação
    */
@@ -215,6 +223,8 @@ public class Simulacao {
           atendePaciente();
         }
       }
+      // remove os eventos Fim do ArrayList de eventos
+      this.removeEventosFim();
     }
     // grava as estatísticas da simulação
     AcessaDados.gravarEstatisticasAtendente(atendentes);
