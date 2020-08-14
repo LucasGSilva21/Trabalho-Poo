@@ -43,6 +43,8 @@ public class Simulacao {
     this.pacientesNormais = AcessaDados.lerPacientesNormal();
     this.pacientesPreferenciais = AcessaDados.lerPacientesPreferencial();
     this.eventos = new ArrayList<Evento>();
+
+    AcessaDados.limparEstatisticas();
   }
 
   /**
@@ -130,7 +132,6 @@ public class Simulacao {
    */
   private void atendePaciente() {
     LocalTime menorTempo = LocalTime.of(23, 59, 59);
-    System.out.println("opa");
 
     // descobrir o menor tempo
     for (Evento evento : eventos) {
@@ -147,9 +148,6 @@ public class Simulacao {
     // somar tempo total
     this.tempoTotal = this.tempoTotal.plusHours(menorTempo.getHour()).plusMinutes(menorTempo.getMinute())
         .plusSeconds(menorTempo.getSecond());
-
-    System.out.println(menorTempo);
-    // System.out.println(this.tempoTotal);
 
     // subtrair tempo de atendimento menor de todos os eventos iniciais
     for (int i = 0; i < eventos.size(); i++) {
@@ -193,7 +191,6 @@ public class Simulacao {
     boolean finalizado = false;
 
     while (!finalizado) {
-      // System.out.println(this.getTempoTotal());
       // verifica se tem pessoas sendo atendidas
       // atendimentosFinalizados() &&
       if (atendimentosFinalizados() && verificaFilaVazia()) {
@@ -208,6 +205,10 @@ public class Simulacao {
           if (auxAtendente != null) {
             auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
             this.adicionaEvento(auxEvento);
+            auxAtendente.adicionaAtendimento();
+            auxPaciente.setHorarioAtendimento(auxPaciente.getHorario_chegada().plusHours(tempoTotal.getHour())
+                .plusMinutes(tempoTotal.getMinute()).plusSeconds(tempoTotal.getSecond()));
+            AcessaDados.gravarEstatisticasPaciente(auxPaciente);
           } else {
             // executa logica de subtrair tempo atendimento e adicionar tempo na fila
             atendePaciente();
@@ -219,6 +220,6 @@ public class Simulacao {
       }
     }
     AcessaDados.gravarEstatisticasAtendente(atendentes);
+    AcessaDados.gravarEstatisticasGerais(tempoTotal, Evento.getNumeroEventos());
   }
-
 }

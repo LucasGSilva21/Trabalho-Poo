@@ -7,7 +7,6 @@ public class Principal {
 
     final Simulacao simulacao = new Simulacao();
     simulacao.iniciaSimulacao();
-
-    System.out.println(simulacao.getTempoTotal());
+    System.out.println("Executando Simulação...");
   }
 }

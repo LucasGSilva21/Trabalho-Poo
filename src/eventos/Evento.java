@@ -12,12 +12,18 @@ public abstract class Evento {
   private Atendente atendente;
 
   /**
+   * Número total de eventos instanciados
+   */
+  private static int numeroEventos;
+
+  /**
    * Construtor da Classe Pai Evento
    * 
    * @param atendente Atendente responsavel pelo Evento
    */
   public Evento(Atendente atendente) {
     this.atendente = atendente;
+    numeroEventos++;
   }
 
   /**
@@ -27,5 +33,14 @@ public abstract class Evento {
    */
   public Atendente getAtendente() {
     return atendente;
+  }
+
+  /**
+   * Metodo responsavel por retornar o número total de eventos instanciados
+   * 
+   * @return Número total de eventos instanciados
+   */
+  public static int getNumeroEventos() {
+    return numeroEventos;
   }
 }

@@ -99,6 +99,6 @@ public abstract class Paciente implements Comparable<Paciente> {
   @Override
   public String toString() {
     return "Nome: " + nome + "\tNúmero de Vacinas: " + numero_vacinas + "\tHorario de Chegada: " + horario_chegada
-        + "\tHorario de Atendimento: " + horario_atendimento + "\n";
+        + "\tHorario de Atendimento: " + horario_atendimento;
   }
 }
