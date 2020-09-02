@@ -204,10 +204,10 @@ public class Simulacao {
         // verifica se tem pacientes na fila
         if (!verificaFilaVazia()) {
           // verifica se tem atendente disponivel
-          auxPaciente = this.getPaciente(tempoTotal);
           auxAtendente = this.verificaAtendenteLivre();
 
           if (auxAtendente != null) {
+            auxPaciente = this.getPaciente(tempoTotal);
             auxEvento = new EventoInicioAtendimento(auxAtendente, auxPaciente, this.tempoTotal);
             this.adicionaEvento(auxEvento);
             auxAtendente.adicionaAtendimento();

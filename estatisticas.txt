@@ -2,13 +2,14 @@ Pacientes:
 Nome: Idosa	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:00	Tempo de fila: 00:00
 Nome: Idoso	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:00	Tempo de fila: 00:00
 Nome: Rafael	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:00	Tempo de fila: 00:00
-Nome: Lucas	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:03	Tempo de fila: 00:03
+Nome: Jeverson	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:03	Tempo de fila: 00:03
+Nome: Lucas	Número de Vacinas: 1	Horario de Chegada: 10:00	Horario de Atendimento: 10:06	Tempo de fila: 00:06
 
 Atendentes:
 Atendente 1	Tipo: Experiente	Número de Atendimentos: 2
 Atendente 2	Tipo: Novato	Número de Atendimentos: 1
-Atendente 3	Tipo: Novato	Número de Atendimentos: 1
+Atendente 3	Tipo: Novato	Número de Atendimentos: 2
 
 Estatisticas Gerais:
-Tempo simulado total: 00:09
-Número de eventos tratados: 8
+Tempo simulado total: 00:15
+Número de eventos tratados: 10
