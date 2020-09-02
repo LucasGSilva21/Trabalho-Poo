@@ -1,6 +1,6 @@
 1 2
 Rafael 1 normal 10:00:00
 Idosa 1 preferencial 10:00:00
-Idoso 1 preferencial 10:00:00
 Jeverson 1 normal 10:00:00
+Idoso 1 preferencial 10:00:00
 Lucas 1 normal 10:00:00
